@@ -5,13 +5,14 @@
 
 std::ostream& PRINT = std::cout;
 
+template<typename T>
 struct FortStruct{
-    std::vector<int> raw;
+    std::vector<T> raw;
 };
 
 FortPtr FortCreate(){
     try{
-        return new FortStruct();
+        return new FortStruct<ITEM>();
     }
     catch(...){
         PRINT << "Unknown error when creating container\n";
@@ -21,7 +22,7 @@ FortPtr FortCreate(){
 
 FortPtr FortClone(const FortPtr& ptr){
     try{
-        return new FortStruct(*ptr);
+        return new FortStruct<ITEM>(*ptr);
     }
     catch(...){
         PRINT << "Unknown error when cloning container\n";
@@ -58,7 +59,7 @@ int FortSize(const FortPtr& ptr){
     }
 }
 
-int FortGet(const FortPtr& ptr, int index){
+ITEM FortGet(const FortPtr& ptr, int index){
     try{
         return ptr->raw[index];
     }
@@ -67,7 +68,7 @@ int FortGet(const FortPtr& ptr, int index){
     }
 }
 
-void FortAppend(FortPtr& ptr, int value){
+void FortAppend(FortPtr& ptr, ITEM value){
     try{
         ptr->raw.push_back(value);
     }

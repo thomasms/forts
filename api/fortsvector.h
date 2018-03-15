@@ -4,6 +4,12 @@
 #include "definitionsapi.h"
 
 #ifdef __cplusplus
+
+template<typename T>
+struct FortStruct;
+
+typedef int ITEM;
+
 extern "C" {
     /**
      *   @brief  From the C++ side, the C pointer
@@ -14,8 +20,7 @@ extern "C" {
      *           this is possible but it is far to difficult to figure out
      *           and does not add that much benefit.
      */
-    struct FortStruct;
-    typedef FortStruct* FortPtr;
+    typedef FortStruct<ITEM>* FortPtr;
 #else
     /**
      *   @brief  From the C side, the C pointer
@@ -80,7 +85,7 @@ extern "C" {
      *   @param   index in the container must be >=0 and < FortSize
      *   @return  The value
      */
-    API_OPTIONAL_SPEC int FortGet(const FortPtr& ptr, int index);
+    API_OPTIONAL_SPEC ITEM FortGet(const FortPtr& ptr, int index);
     
     /**
      *   @brief  Append to the container
@@ -88,7 +93,7 @@ extern "C" {
      *   @param   ptr object
      *   @param   the value to add
      */
-    API_OPTIONAL_SPEC void FortAppend(FortPtr& ptr, int value);
+    API_OPTIONAL_SPEC void FortAppend(FortPtr& ptr, ITEM value);
     
 #ifdef __cplusplus
 }
