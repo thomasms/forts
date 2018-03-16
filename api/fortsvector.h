@@ -21,15 +21,15 @@ extern "C" {
      *           and does not add that much benefit.
      */
     typedef FortStruct<ITEM>* FortPtr;
-    using PTR_VALUE = FortPtr;
 #else
     /**
      *   @brief  From the C side, the C pointer
      *           is merely wrapped as an opaque pointer
      */
     typedef void* FortPtr;
-    typedef FortPtr PTR_VALUE;
 #endif
+    
+    typedef FortPtr PTR_VALUE;
     
     /**
      *   @brief  Creates an instance of the container.
