@@ -3,12 +3,12 @@
 
 #include "definitionsapi.h"
 
+typedef int ITEM;
+
 #ifdef __cplusplus
 
 template<typename T>
 struct FortStruct;
-
-typedef int ITEM;
 
 extern "C" {
     /**
@@ -21,12 +21,14 @@ extern "C" {
      *           and does not add that much benefit.
      */
     typedef FortStruct<ITEM>* FortPtr;
+    using PTR_VALUE = FortPtr;
 #else
     /**
      *   @brief  From the C side, the C pointer
      *           is merely wrapped as an opaque pointer
      */
     typedef void* FortPtr;
+    typedef FortPtr PTR_VALUE;
 #endif
     
     /**
@@ -52,7 +54,7 @@ extern "C" {
      *   @param  FortPtr is the object to copy
      *   @return FortPtr object
      */
-    API_OPTIONAL_SPEC FortPtr FortClone(const FortPtr& ptr);
+    API_OPTIONAL_SPEC FortPtr FortClone(PTR_VALUE ptr);
     
     /**
      *   @brief  Resets an instance of the container.
@@ -60,7 +62,7 @@ extern "C" {
      *
      *   @param  ptr is the object to reset
      */
-    API_OPTIONAL_SPEC void FortReset(FortPtr& ptr);
+    API_OPTIONAL_SPEC void FortReset(PTR_VALUE ptr);
     
     /**
      *   @brief  Destroys an instance of the container.
@@ -68,7 +70,7 @@ extern "C" {
      *
      *   @param  ptr is the object to destroy
      */
-    API_OPTIONAL_SPEC void FortDestroy(FortPtr& ptr);
+    API_OPTIONAL_SPEC void FortDestroy(PTR_VALUE ptr);
     
     /**
      *   @brief  Gets the size of the container
@@ -76,7 +78,7 @@ extern "C" {
      *   @param   ptr object
      *   @return  the size of the container
      */
-    API_OPTIONAL_SPEC int FortSize(const FortPtr& ptr);
+    API_OPTIONAL_SPEC int FortSize(PTR_VALUE ptr);
     
     /**
      *   @brief  Gets the nth (index) value in the container
@@ -85,7 +87,7 @@ extern "C" {
      *   @param   index in the container must be >=0 and < FortSize
      *   @return  The value
      */
-    API_OPTIONAL_SPEC ITEM FortGet(const FortPtr& ptr, int index);
+    API_OPTIONAL_SPEC ITEM FortGet(PTR_VALUE ptr, int index);
     
     /**
      *   @brief  Append to the container
@@ -93,7 +95,7 @@ extern "C" {
      *   @param   ptr object
      *   @param   the value to add
      */
-    API_OPTIONAL_SPEC void FortAppend(FortPtr& ptr, ITEM value);
+    API_OPTIONAL_SPEC void FortAppend(PTR_VALUE ptr, ITEM value);
     
 #ifdef __cplusplus
 }

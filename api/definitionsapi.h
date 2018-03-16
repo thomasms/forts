@@ -2,7 +2,7 @@
 #define DEFINITIONS_HH
 
 // define the import/export for shared libraries/dlls
-#ifdef API_EXPORT
+#if defined(API_EXPORT)
     #if defined(_MSC_VER)
         #define API_OPTIONAL_SPEC __declspec(dllexport)
     #elif defined(__GNUC__)
@@ -10,7 +10,7 @@
     #else
         #pragma warning Unknown dynamic link export semantics.
     #endif
-#elif API_IMPORT
+#elif defined(API_IMPORT)
     #if defined(_MSC_VER)
         #define API_OPTIONAL_SPEC __declspec(dllimport)
     #elif defined(__GNUC__)

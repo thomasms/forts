@@ -79,7 +79,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY bin)
 set(FORTS_MODULE_DIR ${FORTS_BUILD_DIR}/include)
 
 # set include and link directories
-include_directories (${FORTS_BUILD_DIR}/include)
+include_directories (${FORTS_BUILD_DIR}/include ${FORTS_API_HEADERS})
 link_directories (${FORTS_BUILD_DIR}/lib)
 
 # sources

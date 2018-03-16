@@ -13,33 +13,33 @@ module ifortsvector_m
         function FortCloneC(ptr) result(clone) bind(C, name="FortClone")
             use iso_c_binding
             implicit none
-            type(c_ptr) :: ptr
+            type(c_ptr), value :: ptr
             type(c_ptr) :: clone
         end function FortCloneC
 
         subroutine FortResetC(ptr) bind(C, name="FortReset")
             use iso_c_binding
             implicit none
-            type(c_ptr) :: ptr
+            type(c_ptr), value :: ptr
         end subroutine FortResetC
 
         subroutine FortDestroyC(ptr) bind(C, name="FortDestroy")
             use iso_c_binding
             implicit none
-            type(c_ptr) :: ptr
+            type(c_ptr), value :: ptr
         end subroutine FortDestroyC
 
         function FortSizeC(ptr) result(sze) bind(C, name="FortSize")
             use iso_c_binding
             implicit none
-            type(c_ptr)                 :: ptr
+            type(c_ptr), value                 :: ptr
             integer(kind=c_int)         :: sze
         end function FortSizeC
 
         function FortGetC(ptr, index) result(value) bind(C, name="FortGet")
             use iso_c_binding
             implicit none
-            type(c_ptr)                  :: ptr
+            type(c_ptr), value                  :: ptr
             integer(kind=c_int), value   :: index
             integer(kind=c_int)          :: value
         end function FortGetC
@@ -47,7 +47,7 @@ module ifortsvector_m
         subroutine FortAppendC(ptr, value) bind(C, name="FortAppend")
             use iso_c_binding
             implicit none
-            type(c_ptr)                 :: ptr
+            type(c_ptr), value                 :: ptr
             integer(kind=c_int), value  :: value
         end subroutine FortAppendC
 
