@@ -7,8 +7,12 @@ typedef int ITEM;
 
 #ifdef __cplusplus
 
-template<typename T>
-struct FortStruct;
+#include <vector>
+
+template<typename T = ITEM>
+struct FortStruct{
+    std::vector<T> raw;
+};
 
 extern "C" {
     /**
@@ -20,7 +24,7 @@ extern "C" {
      *           this is possible but it is far to difficult to figure out
      *           and does not add that much benefit.
      */
-    typedef FortStruct<ITEM>* FortPtr;
+    typedef FortStruct<>* FortPtr;
     typedef FortPtr& PTR_REF;
 #else
     /**

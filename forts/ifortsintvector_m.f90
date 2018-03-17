@@ -1,4 +1,4 @@
-module ifortsvector_m
+module ifortsintvector_m
 
     !< C functions declaration
     !! Maps one to one with fortsvector.h
@@ -53,5 +53,5 @@ module ifortsvector_m
 
     end interface
 
-end module ifortsvector_m
+end module ifortsintvector_m
 

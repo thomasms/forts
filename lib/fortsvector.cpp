@@ -1,19 +1,13 @@
 #include <iostream>
-#include <vector>
 
 #include "fortsvector.h"
 
 std::ostream& PRINT = std::cout;
 
-template<typename T>
-struct FortStruct{
-    std::vector<T> raw;
-};
-
 FortPtr FortCreate(){
     try{
-        PRINT << "Creating...\n";
-        return new FortStruct<ITEM>();
+        //PRINT << "Creating...\n";
+        return new FortStruct<>();
     }
     catch(...){
         PRINT << "Unknown error when creating container\n";
@@ -23,8 +17,8 @@ FortPtr FortCreate(){
 
 FortPtr FortClone(PTR_CONST_VALUE ptr){
     try{
-        PRINT << "Cloning...\n";
-        return new FortStruct<ITEM>(*ptr);
+        //PRINT << "Cloning...\n";
+        return new FortStruct<>(*ptr);
     }
     catch(...){
         PRINT << "Unknown error when cloning container\n";
@@ -45,7 +39,7 @@ void FortDestroy(PTR_VALUE ptr){
     try{
         delete ptr;
         ptr = nullptr;
-        PRINT << "Deleting...\n";
+        //PRINT << "Deleting...\n";
     }
     catch(...){
         PRINT << "Unknown error when destroying container\n";

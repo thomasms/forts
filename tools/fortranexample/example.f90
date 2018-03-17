@@ -1,6 +1,6 @@
 program example
     use kinds_m
-    use fortsvector_m
+    use fortsintvector_m
 
     call createappenddestroy(3)
     call createappenddestroy(30)
@@ -14,7 +14,7 @@ contains
     subroutine createappenddestroy(size)
         integer(kind=kr4), intent(in), value :: size
 
-        type(FortsVector) :: vector
+        type(FortsIntVector) :: vector
         integer(kind=kr4) :: i
 
         call vector%init()
