@@ -21,15 +21,18 @@ extern "C" {
      *           and does not add that much benefit.
      */
     typedef FortStruct<ITEM>* FortPtr;
+    typedef FortPtr& PTR_REF;
 #else
     /**
      *   @brief  From the C side, the C pointer
      *           is merely wrapped as an opaque pointer
      */
-    typedef void* FortPtr;
+    typedef struct FortPtr* FortPtr;
+    typedef FortPtr PTR_REF;
 #endif
     
     typedef FortPtr PTR_VALUE;
+    typedef const FortPtr PTR_CONST_VALUE;
     
     /**
      *   @brief  Creates an instance of the container.
@@ -54,7 +57,7 @@ extern "C" {
      *   @param  FortPtr is the object to copy
      *   @return FortPtr object
      */
-    API_OPTIONAL_SPEC FortPtr FortClone(PTR_VALUE ptr);
+    API_OPTIONAL_SPEC FortPtr FortClone(PTR_CONST_VALUE ptr);
     
     /**
      *   @brief  Resets an instance of the container.
@@ -62,7 +65,7 @@ extern "C" {
      *
      *   @param  ptr is the object to reset
      */
-    API_OPTIONAL_SPEC void FortReset(PTR_VALUE ptr);
+    API_OPTIONAL_SPEC void FortReset(PTR_CONST_VALUE ptr);
     
     /**
      *   @brief  Destroys an instance of the container.
@@ -78,7 +81,7 @@ extern "C" {
      *   @param   ptr object
      *   @return  the size of the container
      */
-    API_OPTIONAL_SPEC int FortSize(PTR_VALUE ptr);
+    API_OPTIONAL_SPEC int FortSize(PTR_CONST_VALUE ptr);
     
     /**
      *   @brief  Gets the nth (index) value in the container
@@ -87,7 +90,7 @@ extern "C" {
      *   @param   index in the container must be >=0 and < FortSize
      *   @return  The value
      */
-    API_OPTIONAL_SPEC ITEM FortGet(PTR_VALUE ptr, int index);
+    API_OPTIONAL_SPEC ITEM FortGet(PTR_CONST_VALUE ptr, int index);
     
     /**
      *   @brief  Append to the container
@@ -95,7 +98,7 @@ extern "C" {
      *   @param   ptr object
      *   @param   the value to add
      */
-    API_OPTIONAL_SPEC void FortAppend(PTR_VALUE ptr, ITEM value);
+    API_OPTIONAL_SPEC void FortAppend(PTR_CONST_VALUE ptr, ITEM value);
     
 #ifdef __cplusplus
 }

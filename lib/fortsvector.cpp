@@ -20,7 +20,7 @@ FortPtr FortCreate(){
     }
 }
 
-FortPtr FortClone(PTR_VALUE ptr){
+FortPtr FortClone(PTR_CONST_VALUE ptr){
     try{
         return new FortStruct<ITEM>(*ptr);
     }
@@ -30,7 +30,7 @@ FortPtr FortClone(PTR_VALUE ptr){
     }
 }
 
-void FortReset(PTR_VALUE ptr){
+void FortReset(PTR_CONST_VALUE ptr){
     try{
         ptr->raw.clear();
     }
@@ -49,7 +49,7 @@ void FortDestroy(PTR_VALUE ptr){
     }
 }
 
-int FortSize(PTR_VALUE ptr){
+int FortSize(PTR_CONST_VALUE ptr){
     try{
         return static_cast<int>(ptr->raw.size());
     }
@@ -59,7 +59,7 @@ int FortSize(PTR_VALUE ptr){
     }
 }
 
-ITEM FortGet(PTR_VALUE ptr, int index){
+ITEM FortGet(PTR_CONST_VALUE ptr, int index){
     try{
         return ptr->raw[index];
     }
@@ -68,7 +68,7 @@ ITEM FortGet(PTR_VALUE ptr, int index){
     }
 }
 
-void FortAppend(PTR_VALUE ptr, ITEM value){
+void FortAppend(PTR_CONST_VALUE ptr, ITEM value){
     try{
         ptr->raw.push_back(value);
     }
