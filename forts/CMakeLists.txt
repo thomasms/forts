@@ -1,6 +1,7 @@
 project (${FORTS_FORTRAN_LIB_NAME})
 
 set (F90_SOURCES
+    ${FORTS_FORTRAN_LIB_DIR}/kinds_m.f90
     ${FORTS_FORTRAN_LIB_DIR}/ifortsvector_m.f90
     ${FORTS_FORTRAN_LIB_DIR}/fortsvector_m.f90)
 

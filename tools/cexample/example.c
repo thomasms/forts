@@ -10,6 +10,7 @@ int main(){
     FortAppend(ptr, 4);
     FortAppend(ptr, 89);
     
+    printf("Second value is: %i \n", FortGet(ptr, 1));
     printf("Size: %i \n", FortSize(ptr));
     
     FortDestroy(ptr);

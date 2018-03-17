@@ -1,5 +1,6 @@
 module fortsvector_m
     use iso_c_binding
+    use kinds_m
     use ifortsvector_m
     implicit none
 
@@ -75,7 +76,7 @@ module fortsvector_m
         !> Gets the size of the container
         function size(this) result(value)
             class(FortsVector), intent(in) :: this
-            integer  :: value
+            integer(kind=kr4) :: value
 
             call this%check()
             value = FortSizeC(this%raw)
@@ -85,8 +86,8 @@ module fortsvector_m
         !> Gets a value (index is 0 based)
         function get(this, index) result(value)
             class(FortsVector), intent(in)    :: this
-            integer, intent(in)               :: index
-            integer  :: value
+            integer(kind=kr4), intent(in)     :: index
+            integer(kind=kr4)                 :: value
 
             call this%check()
             value = FortGetC(this%raw, index)
@@ -96,7 +97,7 @@ module fortsvector_m
         !> Add a new value
         subroutine append(this, value)
             class(FortsVector), intent(inout) :: this
-            integer, intent(in)               :: value
+            integer(kind=kr4), intent(in)     :: value
 
             call this%check()
             call FortAppendC(this%raw, value)

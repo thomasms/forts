@@ -26,8 +26,10 @@ extern "C" {
     /**
      *   @brief  From the C side, the C pointer
      *           is merely wrapped as an opaque pointer
+     *           using an anonymous struct for some type safety
      */
-    typedef struct FortPtr* FortPtr;
+    struct FortStruct;
+    typedef struct FortStruct* FortPtr;
     typedef FortPtr PTR_REF;
 #endif
     
