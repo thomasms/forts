@@ -4,7 +4,7 @@
 
 std::ostream& PRINT = std::cout;
 
-FortPtr FortCreate(){
+FortPtr METHODNAME(Create)(){
     try{
         //PRINT << "Creating...\n";
         return new FortStruct<>();
@@ -15,7 +15,7 @@ FortPtr FortCreate(){
     }
 }
 
-FortPtr FortClone(PTR_CONST_VALUE ptr){
+FortPtr METHODNAME(Clone)(PTR_CONST_VALUE ptr){
     try{
         //PRINT << "Cloning...\n";
         return new FortStruct<>(*ptr);
@@ -26,7 +26,7 @@ FortPtr FortClone(PTR_CONST_VALUE ptr){
     }
 }
 
-void FortReset(PTR_CONST_VALUE ptr){
+void METHODNAME(Reset)(PTR_CONST_VALUE ptr){
     try{
         ptr->raw.clear();
     }
@@ -35,7 +35,7 @@ void FortReset(PTR_CONST_VALUE ptr){
     }
 }
 
-void FortDestroy(PTR_VALUE ptr){
+void METHODNAME(Destroy)(PTR_VALUE ptr){
     try{
         delete ptr;
         ptr = nullptr;
@@ -46,7 +46,7 @@ void FortDestroy(PTR_VALUE ptr){
     }
 }
 
-int FortSize(PTR_CONST_VALUE ptr){
+int METHODNAME(Size)(PTR_CONST_VALUE ptr){
     try{
         return static_cast<int>(ptr->raw.size());
     }
@@ -56,7 +56,7 @@ int FortSize(PTR_CONST_VALUE ptr){
     }
 }
 
-ITEM FortGet(PTR_CONST_VALUE ptr, int index){
+ITEM METHODNAME(Get)(PTR_CONST_VALUE ptr, int index){
     try{
         return ptr->raw[index];
     }
@@ -65,7 +65,7 @@ ITEM FortGet(PTR_CONST_VALUE ptr, int index){
     }
 }
 
-void FortAppend(PTR_CONST_VALUE ptr, ITEM value){
+void METHODNAME(Append)(PTR_CONST_VALUE ptr, ITEM value){
     try{
         ptr->raw.push_back(value);
     }

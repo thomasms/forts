@@ -4,16 +4,16 @@
 
 int main(){
 
-    FortPtr ptr = FortCreate();
+    FortPtr ptr = METHODNAME(Create)();
 
-    FortAppend(ptr, 2);
-    FortAppend(ptr, 4);
-    FortAppend(ptr, 89);
+    METHODNAME(Append)(ptr, 2);
+    METHODNAME(Append)(ptr, 4);
+    METHODNAME(Append)(ptr, 89);
     
-    printf("Second value is: %i \n", FortGet(ptr, 1));
-    printf("Size: %i \n", FortSize(ptr));
+    printf("Second value is: %i \n", METHODNAME(Get)(ptr, 1));
+    printf("Size: %i \n", METHODNAME(Size)(ptr));
     
-    FortDestroy(ptr);
+    METHODNAME(Destroy)(ptr);
     
     return 0;
 }

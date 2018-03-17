@@ -4,19 +4,19 @@
 
 int main(){
 
-    FortPtr ptr = FortCreate();
+    FortPtr ptr = METHODNAME(Create)();
     
-    FortAppend(ptr, 2);
-    FortAppend(ptr, 4);
-    FortAppend(ptr, 89);
-    FortAppend(ptr, 489);
-    FortAppend(ptr, -2189);
-    FortAppend(ptr, 223321389);
+    METHODNAME(Append)(ptr, 2);
+    METHODNAME(Append)(ptr, 4);
+    METHODNAME(Append)(ptr, 89);
+    METHODNAME(Append)(ptr, 489);
+    METHODNAME(Append)(ptr, -2189);
+    METHODNAME(Append)(ptr, 223321389);
     
-    std::cout << "Third value is: " << FortGet(ptr, 2) << "\n";
-    std::cout << "Size: " << FortSize(ptr) << "\n";
+    std::cout << "Third value is: " << METHODNAME(Get)(ptr, 2) << "\n";
+    std::cout << "Size: " << METHODNAME(Size)(ptr) << "\n";
     
-    FortDestroy(ptr);
+    METHODNAME(Destroy)(ptr);
     
     return 0;
 }

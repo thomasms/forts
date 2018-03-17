@@ -3,7 +3,11 @@
 
 #include "definitionsapi.h"
 
-typedef int ITEM;
+#define TYPE int
+#define TYPENAME Int
+#define METHODNAME(name) M_CONC(FORTNAME, M_CONC(TYPENAME,name))
+
+typedef TYPE ITEM;
 
 #ifdef __cplusplus
 
@@ -49,7 +53,7 @@ extern "C" {
      *
      *   @return FortPtr object
      */
-    API_OPTIONAL_SPEC FortPtr FortCreate();
+    API_OPTIONAL_SPEC FortPtr METHODNAME(Create)();
     
     /**
      *   @brief  Clones an instance of the container.
@@ -63,7 +67,7 @@ extern "C" {
      *   @param  FortPtr is the object to copy
      *   @return FortPtr object
      */
-    API_OPTIONAL_SPEC FortPtr FortClone(PTR_CONST_VALUE ptr);
+    API_OPTIONAL_SPEC FortPtr METHODNAME(Clone)(PTR_CONST_VALUE ptr);
     
     /**
      *   @brief  Resets an instance of the container.
@@ -71,7 +75,7 @@ extern "C" {
      *
      *   @param  ptr is the object to reset
      */
-    API_OPTIONAL_SPEC void FortReset(PTR_CONST_VALUE ptr);
+    API_OPTIONAL_SPEC void METHODNAME(Reset)(PTR_CONST_VALUE ptr);
     
     /**
      *   @brief  Destroys an instance of the container.
@@ -83,7 +87,7 @@ extern "C" {
      *
      *   @param  ptr is the object to destroy
      */
-    API_OPTIONAL_SPEC void FortDestroy(PTR_VALUE ptr);
+    API_OPTIONAL_SPEC void METHODNAME(Destroy)(PTR_VALUE ptr);
     
     /**
      *   @brief  Gets the size of the container
@@ -91,7 +95,7 @@ extern "C" {
      *   @param   ptr object
      *   @return  the size of the container
      */
-    API_OPTIONAL_SPEC int FortSize(PTR_CONST_VALUE ptr);
+    API_OPTIONAL_SPEC int METHODNAME(Size)(PTR_CONST_VALUE ptr);
     
     /**
      *   @brief  Gets the nth (index) value in the container
@@ -100,7 +104,7 @@ extern "C" {
      *   @param   index in the container must be >=0 and < FortSize
      *   @return  The value
      */
-    API_OPTIONAL_SPEC ITEM FortGet(PTR_CONST_VALUE ptr, int index);
+    API_OPTIONAL_SPEC ITEM METHODNAME(Get)(PTR_CONST_VALUE ptr, int index);
     
     /**
      *   @brief  Append to the container
@@ -108,7 +112,7 @@ extern "C" {
      *   @param   ptr object
      *   @param   the value to add
      */
-    API_OPTIONAL_SPEC void FortAppend(PTR_CONST_VALUE ptr, ITEM value);
+    API_OPTIONAL_SPEC void METHODNAME(Append)(PTR_CONST_VALUE ptr, ITEM value);
     
 #ifdef __cplusplus
 }

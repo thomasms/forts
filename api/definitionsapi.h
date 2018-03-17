@@ -26,4 +26,11 @@
     #define API_EXTERN_TAG extern
 #endif // API_EXTERN_TAG
 
+// Concat methods
+#define M_CONC(A, B) M_CONC_(A, B)
+#define M_CONC_(A, B) A##B
+
+// First name of all API functions
+#define FORTNAME Fort
+
 #endif //DEFINITIONS_HH
