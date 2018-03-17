@@ -12,6 +12,7 @@ struct FortStruct{
 
 FortPtr FortCreate(){
     try{
+        PRINT << "Creating...\n";
         return new FortStruct<ITEM>();
     }
     catch(...){
@@ -22,6 +23,7 @@ FortPtr FortCreate(){
 
 FortPtr FortClone(PTR_CONST_VALUE ptr){
     try{
+        PRINT << "Cloning...\n";
         return new FortStruct<ITEM>(*ptr);
     }
     catch(...){
@@ -43,6 +45,7 @@ void FortDestroy(PTR_VALUE ptr){
     try{
         delete ptr;
         ptr = nullptr;
+        PRINT << "Deleting...\n";
     }
     catch(...){
         PRINT << "Unknown error when destroying container\n";

@@ -26,7 +26,7 @@ module ifortsvector_m
         subroutine FortDestroyC(ptr) bind(C, name="FortDestroy")
             use iso_c_binding
             implicit none
-            type(c_ptr) :: ptr
+            type(c_ptr), intent(in), value :: ptr
         end subroutine FortDestroyC
 
         function FortSizeC(ptr) result(sze) bind(C, name="FortSize")

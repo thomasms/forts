@@ -69,7 +69,11 @@ extern "C" {
     
     /**
      *   @brief  Destroys an instance of the container.
-     *           Performs the deallocation
+     *           Performs the deallocation.
+     *
+     *           Multiple calls will cause seg faults.
+     *           Since we pass by value, for C compatability,
+     *           we must only call once.
      *
      *   @param  ptr is the object to destroy
      */
