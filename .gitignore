@@ -19,7 +19,7 @@
 __pycache__
 
 # Ignore build folders
-**/build_*/
+**/build*/
 build/
 
 # Ignore temp folders

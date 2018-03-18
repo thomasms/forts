@@ -1,55 +1,57 @@
+#include "fortspreprocessor.h"
+
 module ifortsintvector_m
 
     !< C functions declaration
     !! Maps one to one with fortsvector.h
     !! For API documentation see the C header file
     interface
-        function FortCreateC() result(ptr) bind(C, name="FortIntCreate")
+        function MACRO_METHODNAME(Int,CreateC)() result(ptr) bind(C, name="FortIntCreate")
             use iso_c_binding
             implicit none
             type(c_ptr) :: ptr
-        end function FortCreateC
+        end function MACRO_METHODNAME(Int,CreateC)
 
-        function FortCloneC(ptr) result(clone) bind(C, name="FortIntClone")
+        function MACRO_METHODNAME(Int,CloneC)(ptr) result(clone) bind(C, name="FortIntClone")
             use iso_c_binding
             implicit none
             type(c_ptr), intent(in), value :: ptr
             type(c_ptr)                    :: clone
-        end function FortCloneC
+        end function MACRO_METHODNAME(Int,CloneC)
 
-        subroutine FortResetC(ptr) bind(C, name="FortIntReset")
+        subroutine MACRO_METHODNAME(Int,ResetC)(ptr) bind(C, name="FortIntReset")
             use iso_c_binding
             implicit none
             type(c_ptr), intent(in), value :: ptr
-        end subroutine FortResetC
+        end subroutine MACRO_METHODNAME(Int,ResetC)
 
-        subroutine FortDestroyC(ptr) bind(C, name="FortIntDestroy")
+        subroutine MACRO_METHODNAME(Int,DestroyC)(ptr) bind(C, name="FortIntDestroy")
             use iso_c_binding
             implicit none
             type(c_ptr), intent(in), value :: ptr
-        end subroutine FortDestroyC
+        end subroutine MACRO_METHODNAME(Int,DestroyC)
 
-        function FortSizeC(ptr) result(sze) bind(C, name="FortIntSize")
+        function MACRO_METHODNAME(Int,SizeC)(ptr) result(sze) bind(C, name="FortIntSize")
             use iso_c_binding
             implicit none
             type(c_ptr), intent(in), value  :: ptr
             integer(kind=c_int)             :: sze
-        end function FortSizeC
+        end function MACRO_METHODNAME(Int,SizeC)
 
-        function FortGetC(ptr, index) result(value) bind(C, name="FortIntGet")
+        function MACRO_METHODNAME(Int,GetC)(ptr, index) result(value) bind(C, name="FortIntGet")
             use iso_c_binding
             implicit none
             type(c_ptr), intent(in), value           :: ptr
             integer(kind=c_int), intent(in), value   :: index
             integer(kind=c_int)                      :: value
-        end function FortGetC
+        end function MACRO_METHODNAME(Int,GetC)
 
-        subroutine FortAppendC(ptr, value) bind(C, name="FortIntAppend")
+        subroutine MACRO_METHODNAME(Int,AppendC)(ptr, value) bind(C, name="FortIntAppend")
             use iso_c_binding
             implicit none
             type(c_ptr), intent(in), value          :: ptr
             integer(kind=c_int), intent(in), value  :: value
-        end subroutine FortAppendC
+        end subroutine MACRO_METHODNAME(Int,AppendC)
 
     end interface
 
