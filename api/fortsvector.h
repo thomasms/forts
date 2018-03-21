@@ -114,6 +114,14 @@ extern "C" {
      */
     API_OPTIONAL_SPEC void METHODNAME(Append)(PTR_CONST_VALUE ptr, ITEM value);
     
+    /**
+     *   @brief  Reserve size
+     *
+     *   @param   ptr object
+     *   @param   Reserve a size
+     */
+    API_OPTIONAL_SPEC void METHODNAME(Reserve)(PTR_CONST_VALUE ptr, int size);
+    
 #ifdef __cplusplus
 }
 #endif

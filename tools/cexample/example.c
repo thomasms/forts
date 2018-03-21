@@ -6,6 +6,8 @@ int main(){
 
     FortPtr ptr = METHODNAME(Create)();
 
+    METHODNAME(Reserve)(ptr, 3);
+    
     METHODNAME(Append)(ptr, 2);
     METHODNAME(Append)(ptr, 4);
     METHODNAME(Append)(ptr, 89);

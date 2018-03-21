@@ -74,3 +74,11 @@ void METHODNAME(Append)(PTR_CONST_VALUE ptr, ITEM value){
     }
 }
 
+void METHODNAME(Reserve)(PTR_CONST_VALUE ptr, int size){
+    try{
+        ptr->raw.reserve(size);
+    }
+    catch(...){
+        PRINT << "Unknown error when reserving the size of the container\n";
+    }
+}

@@ -19,6 +19,7 @@ module fortsintvector_m
         procedure :: init                       !> Constructor
         procedure :: reset                      !> Resets/Clears messages, but monitor still exists and is still initialised
         procedure :: size                       !> Get the size
+        procedure :: reserve                    !> Reserve the size
         procedure :: get                        !> Get a value
         procedure :: append                     !> Append a value
             final :: finalize
@@ -105,6 +106,16 @@ module fortsintvector_m
             call MACRO_METHODNAME(Int,AppendC)(this%raw, value)
 
         end subroutine append
+
+        !> Add a new value
+        subroutine reserve(this, size)
+            class(MACRO_TYPENAME(Int)), intent(inout) :: this
+            integer(kind=kr4), intent(in)             :: size
+
+            call this%check()
+            call MACRO_METHODNAME(Int,ReserveC)(this%raw, size)
+
+        end subroutine reserve
 
         !> Checks if the container has been initialised, exits otherwise
         subroutine check(this)

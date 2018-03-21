@@ -18,6 +18,7 @@ contains
         integer(kind=kr4) :: i
 
         call vector%init()
+        call vector%reserve(size)
 
         do i=0,size-1
             call vector%append(i)
