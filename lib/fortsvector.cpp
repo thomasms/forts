@@ -56,7 +56,7 @@ int METHODNAME(Size)(PTR_CONST_VALUE ptr){
     }
 }
 
-ITEM METHODNAME(Get)(PTR_CONST_VALUE ptr, int index){
+ENTRYTYPE METHODNAME(Get)(PTR_CONST_VALUE ptr, int index){
     try{
         return ptr->raw[index];
     }
@@ -65,7 +65,7 @@ ITEM METHODNAME(Get)(PTR_CONST_VALUE ptr, int index){
     }
 }
 
-void METHODNAME(Append)(PTR_CONST_VALUE ptr, ITEM value){
+void METHODNAME(Append)(PTR_CONST_VALUE ptr, ENTRYTYPE value){
     try{
         ptr->raw.push_back(value);
     }

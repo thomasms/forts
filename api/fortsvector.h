@@ -3,17 +3,15 @@
 
 #include "definitionsapi.h"
 
-#define TYPE int
+#define ENTRYTYPE int
 #define TYPENAME Int
 #define METHODNAME(name) M_CONC(FORTNAME, M_CONC(TYPENAME,name))
-
-typedef TYPE ITEM;
 
 #ifdef __cplusplus
 
 #include <vector>
 
-template<typename T = ITEM>
+template<typename T = ENTRYTYPE>
 struct FortStruct{
     std::vector<T> raw;
 };
@@ -104,7 +102,7 @@ extern "C" {
      *   @param   index in the container must be >=0 and < FortSize
      *   @return  The value
      */
-    API_OPTIONAL_SPEC ITEM METHODNAME(Get)(PTR_CONST_VALUE ptr, int index);
+    API_OPTIONAL_SPEC ENTRYTYPE METHODNAME(Get)(PTR_CONST_VALUE ptr, int index);
     
     /**
      *   @brief  Append to the container
@@ -112,7 +110,7 @@ extern "C" {
      *   @param   ptr object
      *   @param   the value to add
      */
-    API_OPTIONAL_SPEC void METHODNAME(Append)(PTR_CONST_VALUE ptr, ITEM value);
+    API_OPTIONAL_SPEC void METHODNAME(Append)(PTR_CONST_VALUE ptr, ENTRYTYPE value);
     
     /**
      *   @brief  Reserve size
