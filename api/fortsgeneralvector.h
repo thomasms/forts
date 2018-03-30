@@ -1,3 +1,9 @@
+#define METHODNAME(name) M_CONC(FORTNAME, M_CONC(TYPENAME,name))
+#define FORTSTRUCT M_CONC(FORTNAME, M_CONC(TYPENAME,Struct))
+#define FORTPTR M_CONC(FORTNAME, M_CONC(TYPENAME,Ptr))
+#define PTR_VALUE FORTPTR
+#define PTR_CONST_VALUE const FORTPTR
+
 #ifdef __cplusplus
 
 #include <vector>
@@ -26,7 +32,7 @@ extern "C" {
      */
     struct FORTSTRUCT;
     typedef struct FORTSTRUCT* FORTPTR;
-#endif
+#endif // __cplusplus
     
     /**
      *   @brief  Creates an instance of the container.
@@ -110,4 +116,9 @@ extern "C" {
 }
 #endif
 
+#undef METHODNAME
+#undef FORTSTRUCT
+#undef FORTPTR
+#undef PTR_VALUE
+#undef PTR_CONST_VALUE
 

@@ -1,5 +1,6 @@
 #!/bin/bash
 
+export FC=/usr/local/bin/gfortran-7
 mkdir -p build
 cd build
 cmake -DCMAKE_BUILD_TYPE=Release ..

@@ -1,5 +1,11 @@
 #include <iostream>
 
+#define METHODNAME(name) M_CONC(FORTNAME, M_CONC(TYPENAME,name))
+#define FORTSTRUCT M_CONC(FORTNAME, M_CONC(TYPENAME,Struct))
+#define FORTPTR M_CONC(FORTNAME, M_CONC(TYPENAME,Ptr))
+#define PTR_VALUE FORTPTR
+#define PTR_CONST_VALUE const FORTPTR
+
 PTR_VALUE METHODNAME(Create)(){
     try{
         //PRINT << "Creating...\n";
@@ -78,3 +84,9 @@ void METHODNAME(Reserve)(PTR_CONST_VALUE ptr, int size){
         PRINT << "Unknown error when reserving the size of the container\n";
     }
 }
+
+#undef METHODNAME
+#undef FORTSTRUCT
+#undef FORTPTR
+#undef PTR_VALUE
+#undef PTR_CONST_VALUE
