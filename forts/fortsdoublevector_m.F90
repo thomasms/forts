@@ -1,6 +1,6 @@
-#define FORTS_TYPE Int
-#define FORTS_CTYPE c_int
-#define FORTS_FTYPE integer(kind=sp)
+#define FORTS_TYPE Double
+#define FORTS_CTYPE c_double
+#define FORTS_FTYPE real(kind=dp)
 
 #include "fortsgeneralvector_m.h"
 

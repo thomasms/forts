@@ -1,32 +1,48 @@
 program example
     use kinds_m
     use fortsintvector_m
+    use fortsdoublevector_m
 
-    call createappenddestroy(3)
-    call createappenddestroy(30)
-    call createappenddestroy(300)
-    call createappenddestroy(3000)
-    call createappenddestroy(30000)
-    call createappenddestroy(30000000)
+    call runinttest(3)
+    call rundoubletest(30)
 
 contains
 
-    subroutine createappenddestroy(size)
-        integer(kind=kr4), intent(in), value :: size
+    subroutine runinttest(size)
+        integer(kind=sp), intent(in), value :: size
 
         type(FortsIntVector) :: vector
-        integer(kind=kr4) :: i
+        integer(kind=sp) :: i
 
         call vector%init()
         call vector%reserve(size)
 
         do i=0,size-1
             call vector%append(i)
+            print *, "value added: ", vector%get(i)
         enddo
 
         print *, "SIZE: ", vector%size()
 
-    end subroutine createappenddestroy
+    end subroutine runinttest
+
+    subroutine rundoubletest(size)
+        integer(kind=sp), intent(in), value :: size
+
+        type(FortsDoubleVector) :: vector
+        integer(kind=sp)        :: i
+
+        call vector%init()
+        call vector%reserve(size)
+
+        do i=0,size-1
+            call vector%append(i*0.45_dp)
+            print *, "value added: ", vector%get(i)
+        enddo
+
+        print *, "SIZE: ", vector%size()
+
+    end subroutine rundoubletest
 
 end program example
 

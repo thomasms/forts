@@ -2,25 +2,13 @@ module kinds_m
     implicit none
     private
 
-    !< 4 byte integer kind
-    integer, parameter, public :: ki4 = selected_int_kind(9)
+    !> Single precision
+    integer, parameter, public :: sp = kind(1.0)
 
-    !< 8 byte integer kind
-    integer, parameter, public :: ki8 = selected_int_kind(18)
+    !> Double precision
+    integer, parameter, public :: dp = selected_real_kind(2*precision(1.0_sp))
 
-    !< 4 byte real kind
-    integer, parameter, public :: kr4 = selected_real_kind(6)
-
-    !< 8 byte real kind
-    integer, parameter, public :: kr8 = selected_real_kind(15)
-
-    !< default integer kind
-    integer, parameter, public :: kidef = kind(1)
-
-    !< default real kind
-    integer, parameter, public :: krdef = kind(1.0)
-
-    !< default double precision kind
-    integer, parameter, public :: kddef = kind(1.0d0)
+    !> Quad precision
+    integer, parameter, public :: qp = selected_real_kind(2*precision(1.0_dp))
 
 end module kinds_m

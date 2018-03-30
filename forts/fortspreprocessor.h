@@ -13,6 +13,9 @@
 #endif
 
 #define MACRO_TYPENAME(type) MACRO_CAT3(Forts,type,Vector)
+#define MACRO_INTERFACEMODULE(type) MACRO_CAT3(iforts,type,vector_m)
+#define MACRO_MODULESTART(type) module MACRO_CAT3(forts,type,vector_m)
+#define MACRO_MODULEEND(type) end module MACRO_CAT3(forts,type,vector_m)
 #define MACRO_METHODNAME(type,name) MACRO_CAT3(Forts,type,name)
 
 #endif
