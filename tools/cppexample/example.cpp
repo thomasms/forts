@@ -1,22 +1,28 @@
 #include <iostream>
 
-#include "fortsvector.h"
+#include "fortsintvector.h"
+#include "fortsdoublevector.h"
 
 int main(){
 
-    FortPtr ptr = METHODNAME(Create)();
+    auto ptr = FortsIntCreate();
+    auto ptr2 = FortsDoubleCreate();
     
-    METHODNAME(Append)(ptr, 2);
-    METHODNAME(Append)(ptr, 4);
-    METHODNAME(Append)(ptr, 89);
-    METHODNAME(Append)(ptr, 489);
-    METHODNAME(Append)(ptr, -2189);
-    METHODNAME(Append)(ptr, 223321389);
+    FortsIntAppend(ptr, 2);
+    FortsIntAppend(ptr, 4);
+    FortsIntAppend(ptr, 89);
+    FortsIntAppend(ptr, 489);
+    FortsIntAppend(ptr, -2189);
+    FortsIntAppend(ptr, 223321389);
+    FortsDoubleAppend(ptr2, 287.3321389);
     
-    std::cout << "Third value is: " << METHODNAME(Get)(ptr, 2) << "\n";
-    std::cout << "Size: " << METHODNAME(Size)(ptr) << "\n";
+    std::cout << "Third value is: " << FortsIntGet(ptr, 2) << "\n";
+    std::cout << "Size: " << FortsIntSize(ptr) << "\n";
+    std::cout << "First value is: " << FortsDoubleGet(ptr2, 0) << "\n";
+    std::cout << "Size: " << FortsDoubleSize(ptr2) << "\n";
     
-    METHODNAME(Destroy)(ptr);
+    FortsIntDestroy(ptr);
+    FortsDoubleDestroy(ptr2);
     
     return 0;
 }

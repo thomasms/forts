@@ -1,18 +1,9 @@
-#ifndef FORTS_VECTOR_HH
-#define FORTS_VECTOR_HH
-
-#include "definitionsapi.h"
-
-#define ENTRYTYPE int
-#define TYPENAME Int
-#define METHODNAME(name) M_CONC(FORTNAME, M_CONC(TYPENAME,name))
-
 #ifdef __cplusplus
 
 #include <vector>
 
 template<typename T = ENTRYTYPE>
-struct FortStruct{
+struct FORTSTRUCT{
     std::vector<T> raw;
 };
 
@@ -26,21 +17,16 @@ extern "C" {
      *           this is possible but it is far to difficult to figure out
      *           and does not add that much benefit.
      */
-    typedef FortStruct<>* FortPtr;
-    typedef FortPtr& PTR_REF;
+    typedef FORTSTRUCT<>* FORTPTR;
 #else
     /**
      *   @brief  From the C side, the C pointer
      *           is merely wrapped as an opaque pointer
      *           using an anonymous struct for some type safety
      */
-    struct FortStruct;
-    typedef struct FortStruct* FortPtr;
-    typedef FortPtr PTR_REF;
+    struct FORTSTRUCT;
+    typedef struct FORTSTRUCT* FORTPTR;
 #endif
-    
-    typedef FortPtr PTR_VALUE;
-    typedef const FortPtr PTR_CONST_VALUE;
     
     /**
      *   @brief  Creates an instance of the container.
@@ -51,7 +37,7 @@ extern "C" {
      *
      *   @return FortPtr object
      */
-    API_OPTIONAL_SPEC FortPtr METHODNAME(Create)();
+    API_OPTIONAL_SPEC FORTPTR METHODNAME(Create)();
     
     /**
      *   @brief  Clones an instance of the container.
@@ -65,7 +51,7 @@ extern "C" {
      *   @param  FortPtr is the object to copy
      *   @return FortPtr object
      */
-    API_OPTIONAL_SPEC FortPtr METHODNAME(Clone)(PTR_CONST_VALUE ptr);
+    API_OPTIONAL_SPEC FORTPTR METHODNAME(Clone)(PTR_CONST_VALUE ptr);
     
     /**
      *   @brief  Resets an instance of the container.
@@ -124,5 +110,4 @@ extern "C" {
 }
 #endif
 
-#endif //FORTS_VECTOR_HH
 

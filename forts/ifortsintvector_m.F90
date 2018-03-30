@@ -9,39 +9,39 @@ module ifortsintvector_m
     !! Maps one to one with fortsvector.h
     !! For API documentation see the C header file
     interface
-        function MACRO_METHODNAME(FORTS_TYPE,CreateC)() result(ptr) bind(C, name="FortIntCreate")
+        function MACRO_METHODNAME(FORTS_TYPE,CreateC)() result(ptr) bind(C, name="FortsIntCreate")
             use iso_c_binding
             implicit none
             type(c_ptr) :: ptr
         end function MACRO_METHODNAME(FORTS_TYPE,CreateC)
 
-        function MACRO_METHODNAME(FORTS_TYPE,CloneC)(ptr) result(clone) bind(C, name="FortIntClone")
+        function MACRO_METHODNAME(FORTS_TYPE,CloneC)(ptr) result(clone) bind(C, name="FortsIntClone")
             use iso_c_binding
             implicit none
             type(c_ptr), intent(in), value :: ptr
             type(c_ptr)                    :: clone
         end function MACRO_METHODNAME(FORTS_TYPE,CloneC)
 
-        subroutine MACRO_METHODNAME(FORTS_TYPE,ResetC)(ptr) bind(C, name="FortIntReset")
+        subroutine MACRO_METHODNAME(FORTS_TYPE,ResetC)(ptr) bind(C, name="FortsIntReset")
             use iso_c_binding
             implicit none
             type(c_ptr), intent(in), value :: ptr
         end subroutine MACRO_METHODNAME(FORTS_TYPE,ResetC)
 
-        subroutine MACRO_METHODNAME(FORTS_TYPE,DestroyC)(ptr) bind(C, name="FortIntDestroy")
+        subroutine MACRO_METHODNAME(FORTS_TYPE,DestroyC)(ptr) bind(C, name="FortsIntDestroy")
             use iso_c_binding
             implicit none
             type(c_ptr), intent(in), value :: ptr
         end subroutine MACRO_METHODNAME(FORTS_TYPE,DestroyC)
 
-        function MACRO_METHODNAME(FORTS_TYPE,SizeC)(ptr) result(sze) bind(C, name="FortIntSize")
+        function MACRO_METHODNAME(FORTS_TYPE,SizeC)(ptr) result(sze) bind(C, name="FortsIntSize")
             use iso_c_binding
             implicit none
             type(c_ptr), intent(in), value  :: ptr
             integer(kind=c_int)             :: sze
         end function MACRO_METHODNAME(FORTS_TYPE,SizeC)
 
-        function MACRO_METHODNAME(FORTS_TYPE,GetC)(ptr, index) result(value) bind(C, name="FortIntGet")
+        function MACRO_METHODNAME(FORTS_TYPE,GetC)(ptr, index) result(value) bind(C, name="FortsIntGet")
             use iso_c_binding
             implicit none
             type(c_ptr), intent(in), value           :: ptr
@@ -49,14 +49,14 @@ module ifortsintvector_m
             integer(kind=FORTS_CTYPE)                :: value
         end function MACRO_METHODNAME(FORTS_TYPE,GetC)
 
-        subroutine MACRO_METHODNAME(FORTS_TYPE,AppendC)(ptr, value) bind(C, name="FortIntAppend")
+        subroutine MACRO_METHODNAME(FORTS_TYPE,AppendC)(ptr, value) bind(C, name="FortsIntAppend")
             use iso_c_binding
             implicit none
             type(c_ptr), intent(in), value                :: ptr
             integer(kind=FORTS_CTYPE), intent(in), value  :: value
         end subroutine MACRO_METHODNAME(FORTS_TYPE,AppendC)
 
-        subroutine MACRO_METHODNAME(FORTS_TYPE,ReserveC)(ptr, size) bind(C, name="FortIntReserve")
+        subroutine MACRO_METHODNAME(FORTS_TYPE,ReserveC)(ptr, size) bind(C, name="FortsIntReserve")
             use iso_c_binding
             implicit none
             type(c_ptr), intent(in), value          :: ptr

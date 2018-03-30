@@ -31,6 +31,8 @@
 #define M_CONC_(A, B) A##B
 
 // First name of all API functions
-#define FORTNAME Fort
+#define FORTNAME Forts
+
+#define PRINT std::cout
 
 #endif //DEFINITIONS_HH

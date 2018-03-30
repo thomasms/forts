@@ -1,13 +1,9 @@
 #include <iostream>
 
-#include "fortsvector.h"
-
-std::ostream& PRINT = std::cout;
-
-FortPtr METHODNAME(Create)(){
+PTR_VALUE METHODNAME(Create)(){
     try{
         //PRINT << "Creating...\n";
-        return new FortStruct<>();
+        return new FORTSTRUCT<>();
     }
     catch(...){
         PRINT << "Unknown error when creating container\n";
@@ -15,10 +11,10 @@ FortPtr METHODNAME(Create)(){
     }
 }
 
-FortPtr METHODNAME(Clone)(PTR_CONST_VALUE ptr){
+PTR_VALUE METHODNAME(Clone)(PTR_CONST_VALUE ptr){
     try{
         //PRINT << "Cloning...\n";
-        return new FortStruct<>(*ptr);
+        return new FORTSTRUCT<>(*ptr);
     }
     catch(...){
         PRINT << "Unknown error when cloning container\n";

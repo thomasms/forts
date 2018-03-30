@@ -1,21 +1,26 @@
 #include <stdio.h>
 
-#include "fortsvector.h"
+#include "fortsintvector.h"
+#include "fortsdoublevector.h"
 
 int main(){
 
-    FortPtr ptr = METHODNAME(Create)();
+    FortsIntPtr ptr = FortsIntCreate();
+    FortsDoublePtr ptr2 = FortsDoubleCreate();
 
-    METHODNAME(Reserve)(ptr, 3);
+    FortsIntReserve(ptr, 3);
     
-    METHODNAME(Append)(ptr, 2);
-    METHODNAME(Append)(ptr, 4);
-    METHODNAME(Append)(ptr, 89);
+    FortsIntAppend(ptr, 2);
+    FortsIntAppend(ptr, 4);
+    FortsIntAppend(ptr, 89);
+    FortsDoubleAppend(ptr2, 287.3321389);
     
-    printf("Second value is: %i \n", METHODNAME(Get)(ptr, 1));
-    printf("Size: %i \n", METHODNAME(Size)(ptr));
+    printf("Second value is: %i \n", FortsIntGet(ptr, 1));
+    printf("Size: %i \n", FortsIntSize(ptr));
+    printf("First value is: %f \n", FortsDoubleGet(ptr2, 0));
     
-    METHODNAME(Destroy)(ptr);
+    FortsIntDestroy(ptr);
+    FortsDoubleDestroy(ptr2);
     
     return 0;
 }

@@ -13,6 +13,6 @@
 #endif
 
 #define MACRO_TYPENAME(type) MACRO_CAT3(Forts,type,Vector)
-#define MACRO_METHODNAME(type,name) MACRO_CAT3(Fort,type,name)
+#define MACRO_METHODNAME(type,name) MACRO_CAT3(Forts,type,name)
 
 #endif

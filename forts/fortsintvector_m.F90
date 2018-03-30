@@ -6,12 +6,15 @@ module fortsintvector_m
     use ifortsintvector_m
     implicit none
 
+#define FORTS_TYPE Int
+#define FORTS_CTYPE c_int
+
     private
 
     !> The monitor object
     !! This wraps the C API for easy use within fortran
     !! So far does not support cloning, needs to be added
-    type, public :: MACRO_TYPENAME(Int)
+    type, public :: MACRO_TYPENAME(FORTS_TYPE)
     private
         type(c_ptr) :: raw                      !< Underlying C monitor object
         logical     :: isinit  = .false.
@@ -25,13 +28,13 @@ module fortsintvector_m
             final :: finalize
         procedure, private :: check
         procedure, private :: cleanup
-    end type MACRO_TYPENAME(Int)
+    end type MACRO_TYPENAME(FORTS_TYPE)
 
     contains
 
         !> The constructor
         subroutine init(this)
-            class(MACRO_TYPENAME(Int)), intent(inout) :: this
+            class(MACRO_TYPENAME(FORTS_TYPE)), intent(inout) :: this
 
             ! It looks odd to call the cleanup, but is good practice to call before allocation
             call this%cleanup()
@@ -39,7 +42,7 @@ module fortsintvector_m
             ! allocate the C pointer
             !! we don't want a memory leak so check it was not initialised before
             if(this%isinit .eqv. .false.)then
-                this%raw = MACRO_METHODNAME(Int,CreateC)()
+                this%raw = MACRO_METHODNAME(FORTS_TYPE,CreateC)()
                 ! flag to make sure that it is initialised
                 this%isinit = .true.
             endif
@@ -48,7 +51,7 @@ module fortsintvector_m
 
         !> Destructor
         subroutine finalize(this)
-            type(MACRO_TYPENAME(Int)), intent(inout) :: this
+            type(MACRO_TYPENAME(FORTS_TYPE)), intent(inout) :: this
 
             call this%cleanup()
 
@@ -57,11 +60,11 @@ module fortsintvector_m
         !> Deallocates and resets the data structure
         !! If not initialised then this does nothing
         subroutine cleanup(this)
-            class(MACRO_TYPENAME(Int)), intent(inout) :: this
+            class(MACRO_TYPENAME(FORTS_TYPE)), intent(inout) :: this
 
             ! deallocate the C pointer
             if(this%isinit .eqv. .true.)then
-                call MACRO_METHODNAME(Int,DestroyC)(this%raw)
+                call MACRO_METHODNAME(FORTS_TYPE,DestroyC)(this%raw)
                 this%isinit = .false.
             endif
 
@@ -69,57 +72,57 @@ module fortsintvector_m
 
         !> Reset
         subroutine reset(this)
-            class(MACRO_TYPENAME(Int)), intent(inout) :: this
+            class(MACRO_TYPENAME(FORTS_TYPE)), intent(inout) :: this
 
             call this%check()
-            call MACRO_METHODNAME(Int,ResetC)(this%raw)
+            call MACRO_METHODNAME(FORTS_TYPE,ResetC)(this%raw)
 
         end subroutine reset
 
         !> Gets the size of the container
         function size(this) result(value)
-            class(MACRO_TYPENAME(Int)), intent(in) :: this
-            integer(kind=kr4)                 :: value
+            class(MACRO_TYPENAME(FORTS_TYPE)), intent(in) :: this
+            integer(kind=ki4)                 :: value
 
             call this%check()
-            value = MACRO_METHODNAME(Int,SizeC)(this%raw)
+            value = MACRO_METHODNAME(FORTS_TYPE,SizeC)(this%raw)
 
         end function size
 
         !> Gets a value (index is 0 based)
         function get(this, index) result(value)
-            class(MACRO_TYPENAME(Int)), intent(in) :: this
-            integer(kind=kr4), intent(in)     :: index
-            integer(kind=kr4)                 :: value
+            class(MACRO_TYPENAME(FORTS_TYPE)), intent(in) :: this
+            integer(kind=ki4), intent(in)     :: index
+            integer(kind=ki4)                 :: value
 
             call this%check()
-            value = MACRO_METHODNAME(Int,GetC)(this%raw, index)
+            value = MACRO_METHODNAME(FORTS_TYPE,GetC)(this%raw, index)
 
         end function get
 
         !> Add a new value
         subroutine append(this, value)
-            class(MACRO_TYPENAME(Int)), intent(inout) :: this
-            integer(kind=kr4), intent(in)        :: value
+            class(MACRO_TYPENAME(FORTS_TYPE)), intent(inout) :: this
+            integer(kind=ki4), intent(in)        :: value
 
             call this%check()
-            call MACRO_METHODNAME(Int,AppendC)(this%raw, value)
+            call MACRO_METHODNAME(FORTS_TYPE,AppendC)(this%raw, value)
 
         end subroutine append
 
         !> Add a new value
         subroutine reserve(this, size)
-            class(MACRO_TYPENAME(Int)), intent(inout) :: this
-            integer(kind=kr4), intent(in)             :: size
+            class(MACRO_TYPENAME(FORTS_TYPE)), intent(inout) :: this
+            integer(kind=ki4), intent(in)             :: size
 
             call this%check()
-            call MACRO_METHODNAME(Int,ReserveC)(this%raw, size)
+            call MACRO_METHODNAME(FORTS_TYPE,ReserveC)(this%raw, size)
 
         end subroutine reserve
 
         !> Checks if the container has been initialised, exits otherwise
         subroutine check(this)
-            class(MACRO_TYPENAME(Int)), intent(in) :: this
+            class(MACRO_TYPENAME(FORTS_TYPE)), intent(in) :: this
 
             if(this%isinit .eqv. .false.)then
                 stop 'FortsIntVector has not been initialised.'
