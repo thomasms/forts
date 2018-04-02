@@ -4,9 +4,6 @@ set (FORTS_C_LIB_SOURCE
     ${FORTS_C_LIB_DIR}/fortsintvector.cpp
     ${FORTS_C_LIB_DIR}/fortsdoublevector.cpp)
 
-# Include directories
-include_directories (${FORTS_API_HEADERS})
-
 # export the api
 add_definitions(-DAPI_EXPORT=1)
 

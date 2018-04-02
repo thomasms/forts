@@ -10,11 +10,13 @@ set(PROJECT_URL "https://git.ccfe.ac.uk/thomasms/forts")
 # set source directories
 set (SOURCE_DIR_BASE ${CMAKE_CURRENT_LIST_DIR})
 set (FORTS_BUILD_DIR ${CMAKE_BINARY_DIR})
-set (FORTS_C_LIB_DIR ${SOURCE_DIR_BASE}/lib)
-set (FORTS_FORTRAN_LIB_DIR ${SOURCE_DIR_BASE}/forts)
 set (FORTS_API_HEADERS ${SOURCE_DIR_BASE}/api)
-set (FORTS_TOOLS_DIR ${SOURCE_DIR_BASE}/tools)
+set (FORTS_EXAMPLES_DIR ${SOURCE_DIR_BASE}/examples)
+set (FORTS_EXTERNAL_DIR ${SOURCE_DIR_BASE}/external)
+set (FORTS_FORTRAN_LIB_DIR ${SOURCE_DIR_BASE}/forts)
 set (FORTS_INCLUDES ${SOURCE_DIR_BASE}/include)
+set (FORTS_C_LIB_DIR ${SOURCE_DIR_BASE}/lib)
+set (FORTS_TEST_DIR ${SOURCE_DIR_BASE}/test)
 
 # library names
 set (FORTS_C_LIB_NAME cforts)
@@ -79,10 +81,14 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY bin)
 set(FORTS_MODULE_DIR ${FORTS_BUILD_DIR}/include)
 
 # set include and link directories
-include_directories (${FORTS_BUILD_DIR}/include ${FORTS_API_HEADERS})
+include_directories (${FORTS_BUILD_DIR}/include
+                     ${FORTS_API_HEADERS}
+                     ${FORTS_INCLUDES})
 link_directories (${FORTS_BUILD_DIR}/lib)
 
 # sources
 add_subdirectory(${FORTS_C_LIB_DIR})
 add_subdirectory(${FORTS_FORTRAN_LIB_DIR})
-add_subdirectory(${FORTS_TOOLS_DIR})
+add_subdirectory(${FORTS_EXAMPLES_DIR})
+add_subdirectory(${FORTS_TEST_DIR})
+

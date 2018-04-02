@@ -2,7 +2,7 @@ project (FORTRANEXAMPLE)
 enable_language (Fortran)
 
 set (EXAMPLE_EXE_NAME fortranexample)
-set (EXAMPLE_EXE_SOURCE ${FORTS_TOOLS_DIR}/fortranexample/example.f90)
+set (EXAMPLE_EXE_SOURCE ${FORTS_EXAMPLES_DIR}/fortranexample/example.f90)
 set_source_files_properties(${EXAMPLE_EXE_SOURCE} PROPERTIES COMPILE_FLAGS "${F90_FLAGS}")
 
 add_executable (${EXAMPLE_EXE_NAME} ${EXAMPLE_EXE_SOURCE})

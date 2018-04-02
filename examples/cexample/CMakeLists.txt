@@ -1,7 +1,7 @@
 project (CEXAMPLE)
 
 set (CEXAMPLE_EXE_NAME cexample)
-set (CEXAMPLE_EXE_SOURCE ${FORTS_TOOLS_DIR}/cexample/example.c)
+set (CEXAMPLE_EXE_SOURCE ${FORTS_EXAMPLES_DIR}/cexample/example.c)
 
 add_definitions(-DAPI_IMPORT=1)
 
