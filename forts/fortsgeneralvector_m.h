@@ -2,7 +2,7 @@
 
 MACRO_MODULESTART(FORTS_TYPE)
     use iso_c_binding
-    use kinds_m
+    use fork_m
     use MACRO_INTERFACEMODULE(FORTS_TYPE)
     implicit none
     private

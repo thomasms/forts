@@ -1,5 +1,5 @@
 program example
-    use kinds_m
+    use fork_m
     use fortsintvector_m
     use fortsdoublevector_m
 

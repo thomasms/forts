@@ -27,11 +27,11 @@ cd ..
 
 echo "==========="
 echo "C Example"
-./build/bin/cexample
+./buildifort/bin/cexample
 echo "==========="
 echo "C++ Example"
-./build/bin/cppexample
+./buildifort/bin/cppexample
 echo "==========="
 echo "Fortran Example"
-./build/bin/fortranexample
+./buildifort/bin/fortranexample
 echo "==========="

@@ -1,3 +1,9 @@
 [submodule "external/Catch2"]
 	path = external/Catch2
 	url = git@github.com:thomasms/Catch2.git
+[submodule "external/fortime"]
+	path = external/fortime
+	url = https://github.com/thomasms/fortime
+[submodule "external/fork"]
+	path = external/fork
+	url = https://github.com/thomasms/fork
