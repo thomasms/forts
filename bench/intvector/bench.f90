@@ -2,13 +2,14 @@ module intvectorbench_m
     use fork_m
     use timefunctor_m
     use fortsintvector_m
+    use dynamicarray_m
     implicit none
     private
 
     !> Base benchmark type for int containers
     type, extends(TimeFunctor), abstract, public :: IntContainerTimeFunctor
         private
-        integer(kind=sp) :: iterations = 100000000_sp ! 400 MB
+        integer(kind=sp) :: iterations = 1000000_sp ! 4 MB
     contains
         procedure(setup_container), deferred :: setup
     end type IntContainerTimeFunctor
@@ -33,7 +34,7 @@ module intvectorbench_m
     !> Benchmarking for native integer array
     type, extends(IntContainerTimeFunctor), public :: IntArrayTimeFunctor
         private
-        integer(kind=sp), dimension(:), allocatable :: values
+        type(DynamicIntArray) :: vector
     contains
         procedure :: setup => setup_intarray
         procedure :: run => run_intarray
@@ -52,7 +53,7 @@ contains
     subroutine setup_intarray(this)
         class(IntArrayTimeFunctor), intent(inout) :: this
 
-        allocate(this%values(this%iterations))
+        call this%vector%init()
     end subroutine setup_intarray
 
     !> FortsIntVector::Append to be benchmarked
@@ -61,7 +62,7 @@ contains
 
         integer(kind=sp) :: i
 
-        do i=1,this%iterations
+        do i=0,this%iterations-1
             call this%vector%append(i)
         enddo
 
@@ -74,7 +75,7 @@ contains
         integer(kind=sp) :: i
 
         do i=0,this%iterations-1
-            this%values(i) = i
+            call this%vector%append(i)
         enddo
 
     end subroutine run_intarray
