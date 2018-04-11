@@ -78,7 +78,7 @@ MACRO_MODULESTART(FORTS_TYPE)
         !> Gets the size of the container
         function size(this) result(value)
             class(MACRO_TYPENAME(FORTS_TYPE)), intent(in) :: this
-            integer(kind=sp)                 :: value
+            integer(kind=ki4) :: value
 
             call this%check()
             value = MACRO_METHODNAME(FORTS_TYPE,SizeC)(this%raw)
@@ -88,7 +88,7 @@ MACRO_MODULESTART(FORTS_TYPE)
         !> Gets a value (index is 0 based)
         function get(this, index) result(value)
             class(MACRO_TYPENAME(FORTS_TYPE)), intent(in) :: this
-            integer(kind=sp), intent(in)     :: index
+            integer(kind=ki4), intent(in)    :: index
             FORTS_FTYPE                      :: value
 
             call this%check()
@@ -109,7 +109,7 @@ MACRO_MODULESTART(FORTS_TYPE)
         !> Add a new value
         subroutine reserve(this, size)
             class(MACRO_TYPENAME(FORTS_TYPE)), intent(inout) :: this
-            integer(kind=sp), intent(in)             :: size
+            integer(kind=ki4), intent(in)             :: size
 
             call this%check()
             call MACRO_METHODNAME(FORTS_TYPE,ReserveC)(this%raw, size)

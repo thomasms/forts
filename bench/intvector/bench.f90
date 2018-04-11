@@ -8,8 +8,7 @@ module intvectorbench_m
 
     !> Base benchmark type for int containers
     type, extends(TimeFunctor), abstract, public :: IntContainerTimeFunctor
-        private
-        integer(kind=sp) :: iterations = 1000000_sp ! 4 MB
+        integer(kind=ki4) :: iterations = 100000_ki4 ! 0.4 MB
     contains
         procedure(setup_container), deferred :: setup
     end type IntContainerTimeFunctor
@@ -60,7 +59,7 @@ contains
     subroutine run_intvector(this)
         class(IntVectorTimeFunctor), intent(inout) :: this
 
-        integer(kind=sp) :: i
+        integer(kind=ki4) :: i
 
         do i=0,this%iterations-1
             call this%vector%append(i)
@@ -72,7 +71,7 @@ contains
     subroutine run_intarray(this)
         class(IntArrayTimeFunctor), intent(inout) :: this
 
-        integer(kind=sp) :: i
+        integer(kind=ki4) :: i
 
         do i=0,this%iterations-1
             call this%vector%append(i)
@@ -89,15 +88,22 @@ program bench
 
     type(IntVectorTimeFunctor) :: fctrvector
     type(IntArrayTimeFunctor) :: fctrarray
-    real(kind=sp) :: time
 
-    call fctrvector%setup()
-    time = timeit(fctrvector)
-    print *, time, "secs"
+    integer(kind=ki2), parameter :: repeats = 3_ki2
 
-    call fctrarray%setup()
-    time = timeit(fctrarray)
-    print *, time, "secs"
+    call run(fctrvector)
+    call run(fctrarray)
+
+contains
+    subroutine run(fctr)
+        class(IntContainerTimeFunctor), intent(inout) :: fctr
+        real(kind=kr4) :: time
+
+        fctr%repeats = repeats
+        call fctr%setup()
+        time = timeit(fctr)
+        print *, time, "secs", fctr%iterations, "iterations"
+    end subroutine run
 
 end program bench
 

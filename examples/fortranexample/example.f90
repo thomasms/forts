@@ -4,17 +4,17 @@ program example
     use fortsintvector_m
     use fortsdoublevector_m
 
-    call runintnativetest(40)
-    call runinttest(3)
-    call rundoubletest(30)
+    call runintnativetest(40_ki4)
+    call runinttest(3_ki4)
+    call rundoubletest(30_ki4)
 
 contains
 
     subroutine runintnativetest(size)
-        integer(kind=sp), intent(in), value :: size
+        integer(kind=ki4), intent(in), value :: size
 
         type(DynamicIntArray) :: vector
-        integer(kind=sp) :: i, j
+        integer(kind=ki4) :: i
 
         call vector%init()
 
@@ -28,10 +28,10 @@ contains
     end subroutine runintnativetest
 
     subroutine runinttest(size)
-        integer(kind=sp), intent(in), value :: size
+        integer(kind=ki4), intent(in), value :: size
 
         type(FortsIntVector) :: vector
-        integer(kind=sp) :: i
+        integer(kind=ki4)    :: i
 
         call vector%init()
         call vector%reserve(size)
@@ -46,16 +46,16 @@ contains
     end subroutine runinttest
 
     subroutine rundoubletest(size)
-        integer(kind=sp), intent(in), value :: size
+        integer(kind=ki4), intent(in), value :: size
 
         type(FortsDoubleVector) :: vector
-        integer(kind=sp)        :: i
+        integer(kind=ki4)       :: i
 
         call vector%init()
         call vector%reserve(size)
 
         do i=0,size-1
-            call vector%append(i*0.45_dp)
+            call vector%append(i*0.45_kr8)
             print *, "value added: ", vector%get(i)
         enddo
 

@@ -1,6 +1,6 @@
 #define FORTS_TYPE Double
 #define FORTS_CTYPE c_double
-#define FORTS_FTYPE double precision
+#define FORTS_FTYPE real(kind=kr8)
 
 #include "fortsgeneralvector_m.h"
 

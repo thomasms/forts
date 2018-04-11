@@ -3,7 +3,7 @@
 module ifortsdoublevector_m
 
 #define FORTS_TYPE Double
-#define FORTS_CTYPE c_double
+#define FORTS_CTYPE kr8
 
     !< C functions declaration
     !! Maps one to one with fortsdoublevector.h
@@ -36,31 +36,35 @@ module ifortsdoublevector_m
 
         function MACRO_METHODNAME(FORTS_TYPE,SizeC)(ptr) result(sze) bind(C, name="FortsDoubleSize")
             use iso_c_binding
+            use fork_m
             implicit none
             type(c_ptr), intent(in), value  :: ptr
-            integer(kind=c_int)             :: sze
+            integer(kind=ki4)               :: sze
         end function MACRO_METHODNAME(FORTS_TYPE,SizeC)
 
         function MACRO_METHODNAME(FORTS_TYPE,GetC)(ptr, index) result(value) bind(C, name="FortsDoubleGet")
             use iso_c_binding
+            use fork_m
             implicit none
-            type(c_ptr), intent(in), value           :: ptr
-            integer(kind=c_int), intent(in), value   :: index
+            type(c_ptr), intent(in), value        :: ptr
+            integer(kind=ki4), intent(in), value  :: index
             real(kind=FORTS_CTYPE)                :: value
         end function MACRO_METHODNAME(FORTS_TYPE,GetC)
 
         subroutine MACRO_METHODNAME(FORTS_TYPE,AppendC)(ptr, value) bind(C, name="FortsDoubleAppend")
             use iso_c_binding
+            use fork_m
             implicit none
-            type(c_ptr), intent(in), value                :: ptr
+            type(c_ptr), intent(in), value             :: ptr
             real(kind=FORTS_CTYPE), intent(in), value  :: value
         end subroutine MACRO_METHODNAME(FORTS_TYPE,AppendC)
 
         subroutine MACRO_METHODNAME(FORTS_TYPE,ReserveC)(ptr, size) bind(C, name="FortsDoubleReserve")
             use iso_c_binding
+            use fork_m
             implicit none
-            type(c_ptr), intent(in), value          :: ptr
-            integer(kind=c_int), intent(in), value  :: size
+            type(c_ptr), intent(in), value        :: ptr
+            integer(kind=ki4), intent(in), value  :: size
         end subroutine MACRO_METHODNAME(FORTS_TYPE,ReserveC)
 
     end interface

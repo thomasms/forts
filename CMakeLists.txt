@@ -33,7 +33,7 @@ else()
 endif()
 
 # set the general fortran Debug/Release compiler flags
-set(FORTS_RELEASE_FLAGS "-O1")
+set(FORTS_RELEASE_FLAGS "-O3")
 set(FORTS_RELEASE_CXX_FLAGS "-O3")
 set(FORTS_DEBUG_FLAGS "-g -O0")
 set(FORTS_DEBUG_CXX_FLAGS "-g -O0")
@@ -59,6 +59,11 @@ elseif (CMAKE_Fortran_COMPILER_ID MATCHES Intel)
 elseif (CMAKE_Fortran_COMPILER_ID MATCHES GNU)
     set ( F90_FLAGS_DEBUG "-cpp -ffree-form  -ffloat-store -fno-sign-zero -std=f2008 -ffree-line-length-none")
     set ( F90_FLAGS_RELEASE  "-cpp -ffree-form -ffloat-store -fno-sign-zero -std=f2008 -ffree-line-length-none" )
+elseif (CMAKE_Fortran_COMPILER_ID MATCHES NAG)
+    set ( F90_FLAGS_DEBUG "-fpp -free -float-store -f2008")
+    set ( F90_FLAGS_RELEASE  "-fpp -free -float-store -f2008")
+else ()
+    message(ERROR "OS >>> Fortran Compiler not supported!!")
 endif ()
 
 # Release or Debug build

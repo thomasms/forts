@@ -5,9 +5,9 @@ module dynamicarray_m
 
     type, public :: DynamicIntArray
     private
-        integer(kind=sp), dimension(:), allocatable :: raw
-        logical           :: isinit = .false.
-        integer(kind=sp)  :: arraysize = 0_sp
+        integer(kind=ki4), dimension(:), allocatable :: raw
+        logical            :: isinit = .false.
+        integer(kind=ki4)  :: arraysize = 0_ki4
     contains
         procedure :: init                       !> Initialise
         procedure :: size                       !> Get the size
@@ -53,7 +53,7 @@ contains
     function size(this) result(length)
         class(DynamicIntArray), intent(inout) :: this
 
-        integer(kind=sp) :: length
+        integer(kind=ki4) :: length
 
         length = this%arraysize
 
@@ -62,18 +62,18 @@ contains
     !> Append - very slow and inefficient but for benchmarking
     subroutine append(this, value)
         class(DynamicIntArray), intent(inout) :: this
-        integer(kind=sp), intent(in) :: value
+        integer(kind=ki4), intent(in) :: value
 
-        integer(kind=sp), dimension(:), allocatable :: tmp
-        integer(kind=sp) :: prevsize
+        integer(kind=ki4), dimension(:), allocatable :: tmp
+        integer(kind=ki4) :: prevsize
 
         if(this%isinit .eqv. .true.) then
             prevsize = this%size()
-            allocate(tmp(prevsize + 1_sp))
-            tmp(1_sp:prevsize) = this%raw
+            allocate(tmp(prevsize + 1_ki4))
+            tmp(1_ki4:prevsize) = this%raw
             !deallocate(this%raw)
             call move_alloc(tmp, this%raw)
-            this%arraysize = this%arraysize + 1_sp
+            this%arraysize = this%arraysize + 1_ki4
             this%raw(this%arraysize) = value
         endif
 
@@ -82,12 +82,12 @@ contains
     !> Get
     function get(this, index) result(value)
         class(DynamicIntArray), intent(inout) :: this
-        integer(kind=sp), intent(in) :: index
-        integer(kind=sp) :: value
+        integer(kind=ki4), intent(in) :: index
+        integer(kind=ki4) :: value
 
-        value = -1_sp
+        value = -1_ki4
         if(this%isinit .eqv. .true.) then
-            value = this%raw(index + 1_sp)
+            value = this%raw(index + 1_ki4)
         endif
 
     end function get
