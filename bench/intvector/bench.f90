@@ -8,7 +8,6 @@ module intvectorbench_m
 
     !> Base benchmark type for int containers
     type, extends(TimeFunctor), abstract, public :: IntContainerTimeFunctor
-        integer(kind=ki4) :: iterations = 100000_ki4 ! 0.4 MB
     contains
         procedure(setup_container), deferred :: setup
     end type IntContainerTimeFunctor
@@ -59,11 +58,7 @@ contains
     subroutine run_intvector(this)
         class(IntVectorTimeFunctor), intent(inout) :: this
 
-        integer(kind=ki4) :: i
-
-        do i=0,this%iterations-1
-            call this%vector%append(i)
-        enddo
+        call this%vector%append(6748329_ki4)
 
     end subroutine run_intvector
 
@@ -71,11 +66,7 @@ contains
     subroutine run_intarray(this)
         class(IntArrayTimeFunctor), intent(inout) :: this
 
-        integer(kind=ki4) :: i
-
-        do i=0,this%iterations-1
-            call this%vector%append(i)
-        enddo
+        call this%vector%append(6748329_ki4)
 
     end subroutine run_intarray
 
@@ -89,20 +80,27 @@ program bench
     type(IntVectorTimeFunctor) :: fctrvector
     type(IntArrayTimeFunctor) :: fctrarray
 
+    integer(kind=ki4), dimension(5), parameter :: its = [10_ki4, 100_ki4, &
+                                                        & 1000_ki4, 10000_ki4, &
+                                                        & 100000_ki4]
     integer(kind=ki2), parameter :: repeats = 3_ki2
+    integer(kind=ki4) :: i
 
-    call run(fctrvector)
-    call run(fctrarray)
+    do i = lbound(its, 1), ubound(its, 1)
+        call run(fctrvector, its(i))
+        call run(fctrarray, its(i))
+    end do
 
 contains
-    subroutine run(fctr)
+    subroutine run(fctr, iterations)
         class(IntContainerTimeFunctor), intent(inout) :: fctr
-        real(kind=kr4) :: time
+        integer(kind=ki4), intent(in) :: iterations
 
         fctr%repeats = repeats
+        fctr%iterations = iterations
         call fctr%setup()
-        time = timeit(fctr)
-        print *, time, "secs", fctr%iterations, "iterations"
+        call timeit(fctr)
+        call fctr%printsummary()
     end subroutine run
 
 end program bench
