@@ -23,6 +23,9 @@ set (FORTS_TEST_DIR ${SOURCE_DIR_BASE}/test)
 set (FORTS_C_LIB_NAME cforts)
 set (FORTS_FORTRAN_LIB_NAME fforts)
 
+# use fork bit notation
+#add_definitions(-DFORK_USE_BIT_KIND=1)
+
 # Set release build by default
 set (CMAKE_BUILD_TYPE Release CACHE STRING "Select which configuration to build.")
 set (FORTS_BUILD_TYPE "Release")
