@@ -1,4 +1,4 @@
-set (FORTIME_SOURCES ${FORTS_EXTERNAL_DIR}/fork/fork_m.f90
+set (FORTIME_SOURCES ${FORTS_EXTERNAL_DIR}/fork/fork_m.F90
                      ${FORTS_EXTERNAL_DIR}/fortime/source/fortime_m.F90
                      ${FORTS_EXTERNAL_DIR}/fortime/source/timefunctor_m.F90)
 
