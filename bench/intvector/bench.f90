@@ -1,8 +1,6 @@
 module intvectorbench_m
-    use fork_m
+    use forts
     use timefunctor_m
-    use fortsintvector_m
-    use dynamicarray_m
     implicit none
     private
 

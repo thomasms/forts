@@ -6,7 +6,8 @@ set (F90_SOURCES
     ${FORTS_FORTRAN_LIB_DIR}/ifortsintvector_m.F90
     ${FORTS_FORTRAN_LIB_DIR}/ifortsdoublevector_m.F90
     ${FORTS_FORTRAN_LIB_DIR}/fortsintvector_m.F90
-    ${FORTS_FORTRAN_LIB_DIR}/fortsdoublevector_m.F90)
+    ${FORTS_FORTRAN_LIB_DIR}/fortsdoublevector_m.F90
+    ${FORTS_FORTRAN_LIB_DIR}/forts.F90)
 
 # export the api
 add_definitions(-DAPI_IMPORT=1)

@@ -1,12 +1,5 @@
 #include "fortspreprocessor.h"
 
-MACRO_MODULESTART(FORTS_TYPE)
-    use iso_c_binding
-    use fork_m
-    use MACRO_INTERFACEMODULE(FORTS_TYPE)
-    implicit none
-    private
-
     !> The monitor object
     !! This wraps the C API for easy use within fortran
     !! So far does not support cloning, needs to be added
@@ -125,5 +118,3 @@ MACRO_MODULESTART(FORTS_TYPE)
             endif
 
         end subroutine check
-
-MACRO_MODULEEND(FORTS_TYPE)

@@ -71,8 +71,9 @@ contains
             prevsize = this%size()
             allocate(tmp(prevsize + 1_ki4))
             tmp(1_ki4:prevsize) = this%raw
-            !deallocate(this%raw)
+
             call move_alloc(tmp, this%raw)
+
             this%arraysize = this%arraysize + 1_ki4
             this%raw(this%arraysize) = value
         endif

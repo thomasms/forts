@@ -1,8 +1,5 @@
 program example
-    use fork_m
-    use dynamicarray_m
-    use fortsintvector_m
-    use fortsdoublevector_m
+    use forts
 
     call runintnativetest(40_ki4)
     call runinttest(3_ki4)
