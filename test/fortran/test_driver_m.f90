@@ -50,9 +50,6 @@ program unittests
     call test%printsummary()
 
     ! check for fatals
-    if(test%failcount() > 0)then
-        write(*, "(A)") "FAILED!"
-        stop 1
-    end if
+    call test%checkfailure()
 
 end program unittests
