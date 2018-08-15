@@ -5,7 +5,7 @@ program unittests
 
     type(TestCase) :: test
     type(FortsIntVector) :: vector
-    integer(ki4) :: i, size
+    integer(ki4) :: i, length
 
     ! Note the need for init here
     call test%init("FortsTest")
@@ -14,7 +14,7 @@ program unittests
     call vector%init()
 
     ! assert defaults
-    call test%assertequal(0_ki4, vector%size(), message="Assert default size")
+    call test%assertequal(0_ki4, vector%length(), message="Assert default size")
 
     ! append some values
     call vector%append(38)
@@ -22,7 +22,7 @@ program unittests
     call vector%append(45)
 
     ! should equal 3
-    call test%assertequal(3_ki4, vector%size(), message="Assert size after appends")
+    call test%assertequal(3_ki4, vector%length(), message="Assert size after appends")
 
     ! assert values
     call test%assertequal(38_ki4, vector%get(0), message="Assert first value")
@@ -33,14 +33,14 @@ program unittests
     call vector%reset()
 
     ! assert defaults
-    call test%assertequal(0_ki4, vector%size(), message="Assert default size")
+    call test%assertequal(0_ki4, vector%length(), message="Assert default size")
 
     ! append new values
     call vector%append(378)
     call vector%append(-8378)
 
     ! assert size
-    call test%assertequal(2_ki4, vector%size(), message="Assert size after appends")
+    call test%assertequal(2_ki4, vector%length(), message="Assert size after appends")
 
     ! assert values
     call test%assertequal(378_ki4, vector%get(0), message="Assert first value")

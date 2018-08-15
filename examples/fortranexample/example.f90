@@ -10,17 +10,15 @@ contains
     subroutine runintnativetest(size)
         integer(kind=ki4), intent(in), value :: size
 
-        type(DynamicIntArray) :: vector
+        type(FortsIntContainer) :: vector
         integer(kind=ki4) :: i
-
-        call vector%init()
 
         do i=0,size-1
             call vector%append(i)
             print *, "value added: ", vector%get(i)
         enddo
 
-        print *, "SIZE: ", vector%size()
+        print *, "SIZE: ", vector%length()
 
     end subroutine runintnativetest
 
@@ -38,7 +36,7 @@ contains
             print *, "value added: ", vector%get(i)
         enddo
 
-        print *, "SIZE: ", vector%size()
+        print *, "SIZE: ", vector%length()
 
     end subroutine runinttest
 
@@ -56,7 +54,7 @@ contains
             print *, "value added: ", vector%get(i)
         enddo
 
-        print *, "SIZE: ", vector%size()
+        print *, "SIZE: ", vector%length()
 
     end subroutine rundoubletest
 

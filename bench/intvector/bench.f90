@@ -30,7 +30,7 @@ module intvectorbench_m
     !> Benchmarking for native integer array
     type, extends(IntContainerTimeFunctor), public :: IntArrayTimeFunctor
         private
-        type(DynamicIntArray) :: vector
+        type(FortsIntContainer) :: vector
     contains
         procedure :: setup => setup_intarray
         procedure :: run => run_intarray
@@ -49,7 +49,7 @@ contains
     subroutine setup_intarray(this)
         class(IntArrayTimeFunctor), intent(inout) :: this
 
-        call this%vector%init()
+        ! does nothing
     end subroutine setup_intarray
 
     !> FortsIntVector::Append to be benchmarked
@@ -72,21 +72,29 @@ end module intvectorbench_m
 
 program bench
     use fork_m
+    use forts
     use timefunctor_m
     use intvectorbench_m
 
     type(IntVectorTimeFunctor) :: fctrvector
     type(IntArrayTimeFunctor) :: fctrarray
 
-    integer(kind=ki4), dimension(5), parameter :: its = [10_ki4, 100_ki4, &
-                                                        & 1000_ki4, 10000_ki4, &
-                                                        & 100000_ki4]
+    type(FortsIntContainer) :: its
     integer(kind=ki2), parameter :: repeats = 3_ki2
     integer(kind=ki4) :: i
 
-    do i = lbound(its, 1), ubound(its, 1)
-        call run(fctrvector, its(i))
-        call run(fctrarray, its(i))
+    ! number of iterations
+    call its%fill([10_ki4, 100_ki4, 1000_ki4, 10000_ki4, &
+                 & 100000_ki4, 1000000_ki4, 10000000_ki4, 100000000_ki4])
+
+    write(*,'(A)') " -- native fortran array --"
+    do i = 1, its%length()
+        call run(fctrarray, its%get(i))
+    end do
+
+    write(*,'(A)') " -- fortran wrapped c++ vector --"
+    do i = 1, its%length()
+        call run(fctrvector, its%get(i))
     end do
 
 contains

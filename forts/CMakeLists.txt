@@ -2,7 +2,8 @@ project (${FORTS_FORTRAN_LIB_NAME})
 
 set (F90_SOURCES
     ${FORTS_EXTERNAL_DIR}/fork/fork_m.F90
-    ${FORTS_FORTRAN_LIB_DIR}/dynamicarray_m.F90
+    ${FORTS_FORTRAN_LIB_DIR}/native/fortsrealcontainer_m.F90
+    ${FORTS_FORTRAN_LIB_DIR}/native/fortsintcontainer_m.F90
     ${FORTS_FORTRAN_LIB_DIR}/ifortsintvector_m.F90
     ${FORTS_FORTRAN_LIB_DIR}/ifortsdoublevector_m.F90
     ${FORTS_FORTRAN_LIB_DIR}/fortsintvector_m.F90

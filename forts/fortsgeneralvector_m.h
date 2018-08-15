@@ -10,7 +10,7 @@
     contains
         procedure :: init                       !> Constructor
         procedure :: reset                      !> Resets/Clears messages, but monitor still exists and is still initialised
-        procedure :: size                       !> Get the size
+        procedure :: length                     !> Get the size
         procedure :: reserve                    !> Reserve the size
         procedure :: get                        !> Get a value
         procedure :: append                     !> Append a value
@@ -69,14 +69,14 @@
         end subroutine reset
 
         !> Gets the size of the container
-        function size(this) result(value)
+        function length(this) result(value)
             class(MACRO_TYPENAME(FORTS_TYPE)), intent(in) :: this
             integer(kind=ki4) :: value
 
             call this%check()
             value = MACRO_METHODNAME(FORTS_TYPE,SizeC)(this%raw)
 
-        end function size
+        end function length
 
         !> Gets a value (index is 0 based)
         function get(this, index) result(value)
