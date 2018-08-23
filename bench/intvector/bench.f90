@@ -49,7 +49,7 @@ contains
     subroutine setup_intarray(this)
         class(IntArrayTimeFunctor), intent(inout) :: this
 
-        ! does nothing
+        this%vector%scalefactor = 8_ki4
     end subroutine setup_intarray
 
     !> FortsIntVector::Append to be benchmarked

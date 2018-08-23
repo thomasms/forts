@@ -7,6 +7,7 @@ set (EXTERNAL_SOURCES
 
 set (F90_SOURCES
     ${EXTERNAL_SOURCES}
+    test_int_vector_m.f90
     test_driver_m.f90)
 
 # export the api
