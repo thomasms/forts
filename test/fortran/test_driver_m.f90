@@ -12,7 +12,7 @@ program unittests
 
     ! Run them and print output
     call suite%runall()
-    call suite%printsummary()
+    call printsummary(suite)
 
     ! write to JSON
     call jsonwritetofile(suite, "fortstestresults.json")
